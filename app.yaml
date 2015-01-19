@@ -4,11 +4,23 @@ runtime: python27
 api_version: 1
 threadsafe: yes
 
-handlers:
-- url: .*
-  script: main.app
-  
+
 libraries:
 - name: webapp2
   version: latest
+- name: jinja2                                                                  
+  version: latest                                                               
+- name: markupsafe                                                              
+  version: latest 
+  
+handlers:
+- url: /stylesheets
+  static_dir: stylesheets
+  
+- url: /js
+  static_dir: js
+
+- url: /.*
+  script: main.app
+
   

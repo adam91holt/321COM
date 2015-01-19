@@ -1,81 +1,73 @@
-	 from google.appengine.api import users
-from google.appengine.ext import ndb
+from google.appengine.api import users
+from google.appengine.ext import db
 import webapp2
 import jinja2
 import urllib
-import os
-from datetime import datetime
 import urllib2
 import json
+import os
 
+#Set jinja environment so we can pass through data to html
 JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),
     extensions=['jinja2.ext.autoescape'])
-	 
+	
+#For testing purposes
 class MainHandler(webapp2.RequestHandler):
-	def get(self):
-		self.response.write('Hello World!')
+ 	def get(self):
+ 		self.response.write('hello')
         
-        
-class teams(ndb.Model):
-    """Modeling the data store for teams"""
-    teamname = ndb.StringProperty(indexed=False)
-    initials = ndb.StringProperty()
-    twitterurl = ndb.StringProperty()
-    stadiumlong = ndb.StringProperty()
-    stadiumlat = ndb.StringProperty()
-    youtubeurl = ndb.StringProperty()
-    date = ndb.DateTimeProperty(auto_now_add=True)
+#This basically is the model of the data that is entered into the datastore
+class Team(db.Model):
+    teamName = db.StringProperty()
+    twitter = db.StringProperty()
+    youtube = db.StringProperty()
+    lon = db.FloatProperty()
+    lat = db.FloatProperty()
+    stadium = db.StringProperty()
 
-def team_key(datastore_name ='teams'):   
-    """Constructs a Datastore key for a Guestbook entity with datastore_name."""
-    return ndb.Key('teams', datastore_name)
+#Add all 20 teams
+Team(key_name='Arsenal', teamName='Arsenal', twitter='@arsenal', youtube='ArsenalTour', lon=0.108558899999934510, lat=51.554947700000010000, stadium='The Emirates').put()
+Team(key_name='Villa', teamName='Aston Villa', twitter='@avfcofficial', youtube='avfcofficial', lon=-1.8862340000000586, lat=52.510129, stadium='Villa Park').put()
+
     
-""" setting up the data store for fetching the lists of teams"""
+#Will be used as the main part of the app
 class TeamList(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+#         query = db.GqlQuery("SELECT * FROM Team WHERE teamName IN ('Arsenal')")
+        query = db.GqlQuery("SELECT * FROM Team")
         logout_url = users.create_logout_url(self.request.path)
-	datastore_name = self.request.get('teams', 'teams')
-        teams_query = team.query(
-            ancestor=guestbook_key(datastore_name)).order(-teams.teamname)
-        teams = teams_query.fetch(10)
+
         if user:
         	template = JINJA_ENVIRONMENT.get_template('teams.html')
         	template_values = {
-		    'teams': teams,
-		    'datastore_name': urllib.quote_plus(datastore_name),
             'user': user.nickname(),
             'url_logout': logout_url,
             'url_logout_text': 'Log out',
-                
+            'query': query,
         	}
         	self.response.write(template.render(template_values))
         else:
             self.redirect(users.create_login_url(self.request.uri))
             
     def post(self):
-        # We set the same parent key on the 'Greeting' to ensure each greeting
-        # is in the same entity group. Queries across the single entity group
-        # will be consistent. However, the write rate to a single entity group
-        # should be limited to ~1/second.
-        datastore_name = self.request.get('datastore_name',
-                                          'teams')
+        #Not being used at the moment!!!!!
+        datastore_name = self.request.get('datastore_name', 'teams')
         greeting = Greeting(parent=guestbook_key(datastore_name))
-        ip = os.environ["REMOTE_ADDR"]
         
+        ip = os.environ["REMOTE_ADDR"]
 
         if users.get_current_user():
             greeting.author = users.get_current_user()
-
         greeting.content = self.request.get('content')
         greeting.lat = data["geoplugin_latitude"]
         greeting.long = data["geoplugin_longitude"]
         greeting.put()
-
         query_params = {'datastore_name': datastore_name}
         self.redirect('/review?' + urllib.urlencode(query_params))
 
 app = webapp2.WSGIApplication([ 
-	('/', MainHandler)
+	('/', MainHandler),
+    ('/team',TeamList),
 	], debug=True)
