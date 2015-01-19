@@ -1,0 +1,56 @@
+<!--
+To change this template use Tools | Templates.
+-->
+<!DOCTYPE html>
+
+<head>
+</head>
+<html>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Teams</th>
+            </tr>
+        </thead>
+        {% for team in teams %}
+        <tr>
+            <td>{{ team.teamname }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% autoescape true %}
+    <form action="/sign?guestbook_name=teams" method="post">
+        <p>
+            <label><span>Team Name:</span>
+                <textarea name="teamname" rows="3" cols="60"></textarea>
+            </label>
+            <label><span>Initials:</span>
+                <textarea name="initials" rows="3" cols="60"></textarea>
+            </label>
+            <label><span>Twitter Url:</span>
+                <textarea name="twitterurl" rows="3" cols="60"></textarea>
+            </label>
+            <label><span>Stadium long:</span>
+                <textarea name="stadiumlong" rows="3" cols="60"></textarea>
+            </label>
+            <label><span>Stadium lat:</span>
+                <textarea name="stadiumlat" rows="3" cols="60"></textarea>
+            </label>
+            <label><span>Youtube Url:</span>
+                <textarea name="youtubeurl" rows="3" cols="60"></textarea>
+            </label>
+            <label><span></span>
+                <Button type="submit">Add Team</Button>
+            </label>
+        </p>
+
+
+    </form>
+    <a href="{{ url|safe }}">{{ url_linktext }}</a>
+
+</body>
+
+</html>
+{% endautoescape %}
