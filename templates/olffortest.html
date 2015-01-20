@@ -1,0 +1,62 @@
+<!--
+To change this template use Tools | Templates.
+-->
+<!DOCTYPE html>
+
+<head>
+    <link type="text/css" rel="stylesheet" href="/css/stysle.css" />
+    <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false"></script>
+    <script src="js/location.js"></script>
+</head>
+<html>
+
+<body>
+    <table>
+        <thead>
+            <tr>
+                <th>Teams</th>
+            </tr>
+        </thead>
+        {% for team in query %}
+            <tr>
+                <td>{{ team.teamName }}</td>
+                <td>{{ team.twitter }}</td>
+                <td>
+                    <div id="{{team.teamName}}" style="width:300px;height:180px;display:none;"></div>
+                    <br />
+                    <button type="button" onclick="getLoc('{{team.lon}}','{{team.lat}}','{{team.teamName}}')">
+                        Click me to see location
+                    </button>
+                </td>
+            </tr>     
+        {% endfor %}
+
+
+    </table>
+    
+    <table>
+        
+    
+    {% for team in allteams %}
+        <tr>
+            <td>{{team[0]}}</td>
+            <td>{{team[1]}}</td>
+            <td>
+                {% for q in query %}
+                    {% if q.teamName in team[0] %}
+                        <img src="{{q.emblem}}" style="width:100px;height:150px">
+                    {% endif%}
+                {% endfor %}
+            </td>
+        </tr>
+       
+    {% endfor %} 
+    </table> 
+    {% autoescape true %}
+
+    <a href="{{ url|safe }}">{{ url_linktext }}</a>
+
+</body>
+
+</html>
+{% endautoescape %}

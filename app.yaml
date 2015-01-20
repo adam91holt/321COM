@@ -14,11 +14,14 @@ libraries:
   version: latest 
   
 handlers:
-- url: /stylesheets
-  static_dir: stylesheets
+- url: /css
+  static_dir: css
   
 - url: /js
   static_dir: js
+
+- url: /imgs
+  static_dir: imgs
 
 - url: /.*
   script: main.app

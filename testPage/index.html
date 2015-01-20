@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Signika:400,600,700,300' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="js/jquery.flip.js"></script>
+</head>
+
+<body>
+    <div id="header">
+        <div class="leftFloat leftHead">
+            <img class="leftFloat" src="imgs/flaming.svg" alt="">
+            <h1 class="leftFloat"><a href="">321COM MASHUP</a></h1>
+        </div>
+        <ul class="rightFloat rightHead">
+            <li class="navLink"><a href="">TEAMS</a>
+            </li>
+            <li class="navLink"><a href="index.html">PLAYERS</a>
+            </li>
+        </ul>
+    </div>
+    <div id="mid">
+        <ul id="teamCon">
+            <!-- Start the for each loop here -->
+            {% for team in allteams %}
+            <li class="gridItem card">
+                <div class="front">
+                    <!-- 
+                    Place the image url here
+                    <img src="{{}}" alt="" style="height: 100px;">
+                    This could be another place to put the team name
+                    <p>{{}}</p>
+                    -->
+                    {% for q in query %}
+                        {% if q.teamName in team[0] %}
+                            <img src="{{q.emblem}}" style="width:80px;height:100px">
+                        {% endif%}
+                    {% endfor %}
+                </div>
+                <div class="back">
+                    <!--This is the back of the card, name and position etc here -->
+                    {{team[0]}}
+                    <br>
+                    {{team[1]}}
+                </div>
+            </li>
+            <!-- End the for each loop here -->
+            {% endfor %}
+        </ul>
+    </div>
+    <div id="footer">
+        <div id="footerCon">
+            <h1>Lorem ipsum dolar sit amet.</h1>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt lectus in sapien hendrerit viverra. Cras nunc nibh, congue at lorem sit amet, bibendum aliquam justo. Vivamus vulputate lacus vitae mauris luctus, nec eleifend turpis interdum. Aliquam tincidunt, mauris et consectetur tristique, dui leo laoreet elit, eget sagittis lorem nulla eu dui. Vestibulum vel leo sit amet justo venenatis ullamcorper. Nullam vitae suscipit nibh. Nulla sit amet ex quam. Integer molestie ac justo ut dictum. Vestibulum tristique venenatis sodales. Praesent non ex pellentesque, dictum nisi eget, tincidunt augue. Aliquam pharetra orci justo, a auctor mauris bibendum sed. Sed mattis mattis mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras semper quam turpis, eu aliquet purus euismod sit amet.</p>
+        </div>
+
+    </div>
+    <script src="js/flip.js"></script>
+</body>
+
+</html>

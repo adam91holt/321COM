@@ -1,0 +1,23 @@
+#teamCon {
+    height: 650px;
+    width: 80%;
+}
+#teamLeft{
+    width: 33%;
+    height: 100%;
+    float: left;
+}
+#map img{
+    height: 100%;
+}
+#teamRight {
+    float: left;
+    width: 1000px;
+    height: 500px; 
+    margin-left: 20px;
+}
+#rightLeft{
+    height: 100%;
+    width:703px;
+    float:left;
+}

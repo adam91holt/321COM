@@ -1,0 +1,96 @@
+body {
+    background: url(../imgs/grs.jpg);
+}
+#header {
+    height: 50px;
+    width: 100%;
+    background: #34495e;
+    border-bottom: 2px solid #2c3e50;
+}
+.leftFloat {
+    float: left;
+    font-size: 20px;
+    margin: 15px 0 0 15px;
+}
+.leftHead {
+    width: 300px;
+}
+.leftHead h1 {
+    font-family:'Signika', sans-serif;
+    color: #ecf0f1;
+    margin: 3px 0 0 8px;
+}
+.leftHead img {
+    height:40px;
+    margin: -10px 0 0 -10px;
+}
+.leftHead a {
+    font-family:'Signika', sans-serif;
+    text-decoration: none;
+    color: #ecf0f1;
+}
+.leftHead a:hover {
+    color: #bdc3c7;
+}
+.rightFloat {
+    float: right;
+}
+.rightHead a {
+    font-family:'Signika', sans-serif;
+    text-decoration: none;
+    color: #ecf0f1;
+}
+.rightHead a:hover {
+    color: #bdc3c7;
+}
+#header ul {
+    margin: 18px 15px 0 0;
+}
+.navLink {
+    display: inline;
+    color: #ecf0f1;
+    margin: 0 10px 0 0;
+}
+#mid {
+    height: auto;
+    overflow: hidden;
+    margin-bottom: 40px;
+    margin-top: 50px;
+}
+#teamCon {
+    width:80%;
+    margin: auto;
+    position: relative;
+}
+.gridItem {
+    height: 190px;
+    width: 190px;
+    background-color:rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    float: left;
+    margin: 20px 0 20px 20px;
+    position: relative;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#footer {
+    min-height: 210px;
+    width:100%;
+    background: #34495e;
+    border-top: 2px solid #2c3e50;
+}
+#footerCon{
+    width: 80%;
+    text-align: center;
+    color: white;
+    margin: auto;
+}
+#footerCon h1{
+    margin: 20px 0 20px 0;
+    font-size: 20px;
+}
+.flip {
+    display: inline-block;
+    color: white;
+}
