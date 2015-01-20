@@ -25,37 +25,22 @@
     </div>
     <div id="mid">
         <ul id="teamCon">
-            <!-- Start the for each loop here -->
             {% for team in allteams %}
             <li class="gridItem card">
                 <div class="front">
-                    <!-- 
-                    Place the image url here
-                    <img src="" alt="" style="height: 100px;">
-                    This could be another place to put the team name
-                    <p></p>
-                    -->
-                    {% for q in query %}
-                        {% if q.teamName in team[0] %}
-                            <img src="{{q.emblem}}" style="width:120px;height:150px">
-                            <p>{{team[0]}}</p>
-                            <p>Position: {{team[1]}}</p>
-                        {% endif%}
-                    {% endfor %}
+                    {% for q in query %} {% if q.teamName in team[0] %}
+                    <img src="{{q.emblem}}" class="emblem">
+                    <p class="team">{{q.teamName}}</p>
+                    {% endif%} {% endfor %}
                 </div>
                 <div class="back">
-                    <!--This is the back of the card, name and position etc here -->
-                    <p>
-                        {{team[0]}}
-                        <br>
+                    <p class="posHead">POSITION</p>
+                    <p class="pos">
                         {{team[1]}}
-                        <button>
-                            Click to see more
-                        </button>
                     </p>
+                    <input class="more" type="button" value="Click to see more">
                 </div>
             </li>
-            <!-- End the for each loop here -->
             {% endfor %}
         </ul>
     </div>

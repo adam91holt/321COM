@@ -1,4 +1,4 @@
-import urllib2, json
+import urllib3, json
 allteams = []
 
 http = urllib3.PoolManager()
@@ -13,21 +13,24 @@ def getTeams():
 
     allteams = []
     #For loop to get all necessary values
-    for team in teamlist:
-#         class Team:
-#             def __init__(self, teamname, position):
-#                 self.teamname = teamname
-#                 self.position = position
-        t = (str(team['teamName']), team['position'])
-        allteams.append(t)
-    print allteams
-    #Execute
+    for idx, t in enumerate(teamlist):
+        teamlink = teamlist[int(idx)]['_links']['team']['href']
+        name = t['teamName']
+        position = t['position']
 
-getTeams()
+        print teamlink + '  ' + name
+        
+        
+        
     
-
+getTeams()
     
 
 # for t in teamlist:
 #     print ('test')
 #     print teamlist[t.index]['teamName']
+    
+#Would using class objects be of any use?
+#maybe will look into it, just want to get all the values I need first
+#
+                 

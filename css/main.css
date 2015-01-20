@@ -57,6 +57,29 @@ body {
     margin-bottom: 40px;
     margin-top: 50px;
 }
+.emblem {
+    height: 125px;
+    width: 125px;
+    margin: 20px 0 0 0;
+}
+.team {
+    font-family: 'Signika', sans-serif;
+    margin-top: 10px;
+}
+.posHead {
+    margin: 20px 0 0 0;
+    font-family: 'Signika', sans-serif;
+}
+.pos {
+    font-size: 100px;
+    margin: 0 0 0 0;
+}
+input.more{
+    margin: 10px 0 0 0;
+    background: #34495e;
+    outline: none;
+    color: white;
+}
 #teamCon {
     width:80%;
     margin: auto;
@@ -73,6 +96,7 @@ body {
     -webkit-border-radius: 5px;
     -moz-border-radius: 5px;
     border-radius: 5px;
+    text-align: center;
 }
 #footer {
     min-height: 210px;
