@@ -120,7 +120,7 @@ class TeamData(webapp2.RequestHandler):
         teamlist = dataDecode['standing']
 
         #Argument - this will later be passed in via URL
-        arg = 'Manchester City'
+        arg = self.request.get('team')
 
         #Array to store all players in... will be store in tuples
         teamPlayers = []

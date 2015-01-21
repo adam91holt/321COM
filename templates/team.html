@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="css/team.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/jquery.flip.js"></script>
+    
+    
+    <style>p    {color:white}</style>
+    
+    
 </head>
 
 <body>
@@ -24,7 +29,9 @@
             </li>
         </ul>
     </div>
-    {{players}}
+    {% for p in players %}
+        <p>Position = {{p[0]}} --- Name = {{p[1]}} --- Position = {{p[2]}}</p>
+    {% endfor %}
     <div id="mid">
         <div id="teamCon">
             <div id="teamLeft">
