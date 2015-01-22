@@ -30,7 +30,7 @@ JINJA_ENVIRONMENT = jinja2.Environment(
 class MainHandler(webapp2.RequestHandler):
     def get(self):
         #url for twittertest
-        twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=chelseafc&count=5"
+        twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=avfcofficial&count=10"
         parameters = []
         tweets = []
         response = twitterreq.twitterreq(twitterurl, "GET", parameters)
@@ -60,8 +60,16 @@ Team(key_name='West Ham', teamName='West Ham United', twitter='@whufc_official',
 Team(key_name='Liverpool', teamName='Liverpool', twitter='@LFC', youtube='LiverpoolFC', lon=-2.960873, lat=53.430995, stadium='Anfield', emblem = 'http://upload.wikimedia.org/wikipedia/de/0/0a/FC_Liverpool.svg').put()
 Team(key_name='Swansea', teamName='Swansea City', twitter='@SwansOfficial', youtube='SWANSPLAYER', lon=-3.935264, lat=51.642737, stadium='Liberty Stadium', emblem = 'http://upload.wikimedia.org/wikipedia/de/a/ab/Swansea_City_Logo.svg').put()
 Team(key_name='Stoke', teamName='Stoke City', twitter='@stokecity', youtube='UCmFPjHUFr0hyE6eFGvCm7IA', lon=-2.175507, lat=52.988329, stadium='Britannia Stadium', emblem = 'http://upload.wikimedia.org/wikipedia/de/a/a3/Stoke_City.svg').put()
+Team(key_name='Newcastle', teamName='Newcastle United', twitter='@NUFC', youtube='NUFCOfficial1892', lon=-1.621667, lat=54.975593, stadium='St James\' Park', emblem = 'http://upload.wikimedia.org/wikipedia/de/5/56/Newcastle_United_Logo.svg').put()
 Team(key_name='Everton', teamName='Everton', twitter='@Everton', youtube='OfficialEverton', lon=-2.966448, lat=53.438979, stadium='Goodison Park', emblem = 'http://upload.wikimedia.org/wikipedia/de/f/f9/Everton_FC.svg').put()
+Team(key_name='Crystal', teamName='Crystal Palace', twitter='@CPFC', youtube='OfficialCPFC', lon=-0.085657, lat=51.398347, stadium='Selhurst Park', emblem = 'http://upload.wikimedia.org/wikipedia/de/b/bf/Crystal_Palace_F.C._logo_(2013).png').put()
+Team(key_name='West Bromwich', teamName='West Bromwich Albion', twitter='@WBAFCofficial', youtube='OfficialAlbion', lon=-1.964002, lat=52.509599, stadium='The Hawthorns', emblem = 'http://upload.wikimedia.org/wikipedia/de/8/8b/West_Bromwich_Albion.svg').put()
+Team(key_name='Sunderland', teamName='Sunderland', twitter='@SunderlandAFC', youtube='sunderlandafc', lon=-1.388500, lat=54.914623, stadium='Stadium of Light', emblem = 'http://upload.wikimedia.org/wikipedia/de/6/60/AFC_Sunderland.svg').put()
 Team(key_name='Villa', teamName='Aston Villa', twitter='@avfcofficial', youtube='avfcofficial', lon=-1.8862340000000586, lat=52.510129, stadium='Villa Park', emblem = 'http://upload.wikimedia.org/wikipedia/de/9/9f/Aston_Villa_logo.svg').put()
+Team(key_name='Burnley', teamName='Burnley', twitter='@BurnleyOfficial', youtube='officialburnleyfc', lon=-2.230209, lat=53.788947, stadium='Turf Moor', emblem = 'http://upload.wikimedia.org/wikipedia/de/8/87/Burnley_FC.gif').put()
+Team(key_name='Hull', teamName='Hull City', twitter='@HullFCNews', youtube='HCAFCOfficial', lon=-0.367735, lat=53.746560, stadium='KC Stadium', emblem = 'http://upload.wikimedia.org/wikipedia/de/a/a9/Hull_City_AFC.svg').put()
+Team(key_name='QPR', teamName='Queens Park Rangers', twitter='@QPRFC', youtube='OfficialQPR', lon=-0.232914, lat=51.509689, stadium='Loftus Road', emblem = 'http://upload.wikimedia.org/wikipedia/de/d/d4/Queens_Park_Rangers.svg').put()
+Team(key_name='Leicester', teamName='Leicester City', twitter='@OfficialFOXES', youtube='LCFCOfficial', lon=-1.141543, lat=52.620109, stadium='King Power Stadium', emblem = 'http://upload.wikimedia.org/wikipedia/en/6/63/Leicester02.png').put()
 Team(key_name='Wolverhampton', teamName='Wolverhampton Wanderers', twitter='@officialwolves', youtube='OfficialWolvesVideo', lon=-2.130429, lat=52.590236, stadium='Molineux Stadium', emblem = 'http://upload.wikimedia.org/wikipedia/en/f/fc/Wolverhampton_Wanderers.svg').put()
 
 
@@ -149,6 +157,16 @@ class TeamData(webapp2.RequestHandler):
                 for p in player:
                     person = (p['jerseryNumber'], p['name'], p['position'])
                     teamPlayers.append(person)
+                #url for twittertest
+                twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=avfcofficial&count=10"
+                parameters = []
+                tweets = []
+                response = twitterreq.twitterreq(twitterurl, "GET", parameters)
+                content = json.loads(response.content.decode('utf8'))
+                for item in content:
+                    self.response.write('<h1>' +item['user']['name'] +'</h1>\n')
+                    self.response.write('<p>'+ item['text'] +'</p>\n')    
+                
 
         #Pass in all templated if user is logged in
         if user:

@@ -28,24 +28,19 @@
             {% for team in allteams %}
             <li class="gridItem card">
                 <div class="front">
-                    {% for q in query %} 
-                        {% if q.teamName in team[0] %}
-                            <img src="{{q.emblem}}" class="emblem">
-                            <p class="team">{{q.teamName}}</p>
-                        {% endif%} 
-                    {% endfor %}
+                    {% for q in query %} {% if q.teamName in team[0] %}
+                    <img src="{{q.emblem}}" class="emblem">
+                    <p class="team">{{q.teamName}}</p>
+                    {% endif%} {% endfor %}
                 </div>
                 <div class="back">
-                    {% for q in query %}
-                    {% if q.teamName in team[0] %}
-                        <p class="posHead">POSITION</p>
-                        <p class="pos">
-                            {{team[1]}}
-                        </p>
-                        <input class="more" type="button" value="Click to see more">
-                        <a href="/team?team={{q.teamName}}">CLICK HERE</a>
-                    {% endif%} 
-                    {% endfor %}
+                    {% for q in query %} {% if q.teamName in team[0] %}
+                    <p class="posHead">POSITION</p>
+                    <p class="pos">
+                        {{team[1]}}
+                    </p>
+                    <a class="more" href="/team?team={{q.teamName}}">TEAM DETAILS</a>
+                    {% endif%} {% endfor %}
                 </div>
             </li>
             {% endfor %}

@@ -63,22 +63,30 @@ body {
     margin: 20px 0 0 0;
 }
 .team {
-    font-family: 'Signika', sans-serif;
+    font-family:'Signika', sans-serif;
     margin-top: 10px;
 }
 .posHead {
     margin: 20px 0 0 0;
-    font-family: 'Signika', sans-serif;
+    font-family:'Signika', sans-serif;
 }
 .pos {
     font-size: 100px;
-    margin: 0 0 0 0;
+    margin: 0 0 10px 0;
 }
-input.more{
-    margin: 10px 0 0 0;
+.more {
+    padding: 5px 10px 5px 10px;
+    font-family:'Signika', sans-serif;
     background: #34495e;
-    outline: none;
     color: white;
+    text-decoration: none;
+    font-size: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.more:hover {
+    color: #bdc3c7;
 }
 #teamCon {
     width:80%;
@@ -99,18 +107,18 @@ input.more{
     text-align: center;
 }
 #footer {
-    min-height: 210px;
+    min-height: 250px;
     width:100%;
     background: #34495e;
     border-top: 2px solid #2c3e50;
 }
-#footerCon{
+#footerCon {
     width: 80%;
     text-align: center;
     color: white;
     margin: auto;
 }
-#footerCon h1{
+#footerCon h1 {
     margin: 20px 0 20px 0;
     font-size: 20px;
 }
