@@ -129,7 +129,10 @@ class TeamData(webapp2.RequestHandler):
 
         #Argument - this will later be passed in via URL
         arg = self.request.get('team')
-
+        #get the query from the url
+        query = db.GqlQuery("SELECT * FROM Team WHERE teamName IN ('" + arg + "')")
+        # these work just like console logging in javascript enjoy! they will appear in the terminal 
+        logging.info(query[0].twitter)
         #Array to store all players in... will be store in tuples
         teamPlayers = []
 
@@ -158,14 +161,20 @@ class TeamData(webapp2.RequestHandler):
                     person = (p['jerseryNumber'], p['name'], p['position'])
                     teamPlayers.append(person)
                 #url for twittertest
-                twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=avfcofficial&count=10"
-                parameters = []
-                tweets = []
-                response = twitterreq.twitterreq(twitterurl, "GET", parameters)
-                content = json.loads(response.content.decode('utf8'))
-                for item in content:
-                    self.response.write('<h1>' +item['user']['name'] +'</h1>\n')
-                    self.response.write('<p>'+ item['text'] +'</p>\n')    
+                #Put team name in URL below for the Twitter request. 
+            #gotta take away the @ symbol
+        minusfirst = query[0].twitter[1:]
+        logging.info(minusfirst)
+        twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + minusfirst +"&count=10"
+        parameters = []
+        tweets = []
+        response = twitterreq.twitterreq(twitterurl, "GET", parameters)
+        content = json.loads(response.content.decode('utf8'))
+        for item in content:
+            tweet = '<h1>' + item['user']['name'] +'</h1>\n' +'<p>' + item['text'] +'</p>\n'
+            tweets.append(tweet)
+#                   self.response.write('<h1>' +item['user']['name'] +'</h1>\n')
+#                   self.response.write('<p>'+ item['text'] +'</p>\n')    
                 
 
         #Pass in all templated if user is logged in
@@ -176,6 +185,7 @@ class TeamData(webapp2.RequestHandler):
             'url_logout': logout_url,
             'url_logout_text': 'Log out',
             'players': teamPlayers,
+            'tweets': tweets,
         	}
         	self.response.write(template.render(template_values))
         else:

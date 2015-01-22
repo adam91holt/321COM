@@ -32,7 +32,7 @@ http_method = "GET"
 Construct, sign, and open a twitter request
 using the hard-coded credentials above.
 '''
-def twitterreq(url, method,parameters):
+def twitterreq(url, method, parameters):
     req = oauth.Request.from_consumer_and_token(oauth_consumer,
                                              token=oauth_token,
                                              http_method=http_method,
