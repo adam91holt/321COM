@@ -41,12 +41,6 @@ for t in teamlist:
 for p in teamPlayers:
     print 'Number: ', p[0], ' Name: ', p[1], ' Position: ', p[2] 
 
-        
-        
-
-
-
-
 # Grab all teams
 
 # Take an arguement from the url
