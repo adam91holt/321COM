@@ -9,44 +9,70 @@
     <link rel="stylesheet" href="css/team.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/jquery.flip.js"></script>
-
-
-    <style>
-        p {
-            color:white
-        }
-    </style>
-
-
 </head>
 
 <body>
     <div id="header">
         <div class="leftFloat leftHead">
             <img class="leftFloat" src="imgs/flaming.svg" alt="">
-            <h1 class="leftFloat"><a href="../">321COM MASHUP</a></h1>
+            <h1 class="leftFloat"><a href="../">321COM MASHUP</a></h1> 
         </div>
         <ul class="rightFloat rightHead">
-            <li class="navLink"><a href="../">TEAMS</a>
+            <li class="navLink"><a href="../">TEAMS</a> 
             </li>
-            <li class="navLink"><a href="">PLAYERS</a>
+            <li class="navLink"><a href="">PLAYERS</a> 
             </li>
         </ul>
     </div>
     <div id="mid">
-        {% for p in players %}
-        <p>Position = {{p[0]}} --- Name = {{p[1]}} --- Position = {{p[2]}}</p>
-        {% endfor %}
-        
-        <h1>tweets - MOVE ME WHERE YOU WANT DAVID</h1>
-        {% for t in tweets %}
-            {{t}}
-        {% endfor %}
+        <section id="teamContents">
+            <section id="teamHeader">
+                <img id="logo" src="{{query[0].emblem}}">
+                <h1 id="teamName">{{query[0].teamName}}</h1>
+                <a class="map" href="">Show Stadium</a>
+            </section>
+
+            <section class="leftFloat">
+                <table id="teamTable" class="flat-table">
+                    <tr>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Position</th>
+                    </tr>
+                    {% for p in players %}
+                    <tr>
+                        <td><b>{{p[0]}}</b>
+                        </td>
+                        <td>{{p[1]}}</td>
+                        <td>{{p[2]}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </section>
+            <section class="leftFloat">
+                <table class="flat-table tweets">
+                    <tr>
+                        <th class="time">Time Tweeted</th>
+                        <th>Tweet</th>
+                    </tr>
+                    {% for t in tweets %}
+                    <tr>
+                        <td>
+                            <b>{{t.created_at[0:19]}}</b>
+                        </td>
+                        <td>
+                            {{t.text}}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </section>
+        </section>
     </div>
     <div id="footer">
         <div id="footerCon">
-            <h1>Lorem ipsum dolar sit amet.</h1>
-            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt lectus in sapien hendrerit viverra. Cras nunc nibh, congue at lorem sit amet, bibendum aliquam justo. Vivamus vulputate lacus vitae mauris luctus, nec eleifend turpis interdum. Aliquam tincidunt, mauris et consectetur tristique, dui leo laoreet elit, eget sagittis lorem nulla eu dui. Vestibulum vel leo sit amet justo venenatis ullamcorper. Nullam vitae suscipit nibh. Nulla sit amet ex quam. Integer molestie ac justo ut dictum. Vestibulum tristique venenatis sodales. Praesent non ex pellentesque, dictum nisi eget, tincidunt augue. Aliquam pharetra orci justo, a auctor mauris bibendum sed. Sed mattis mattis mollis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Cras semper quam turpis, eu aliquet purus euismod sit amet.</p>
+            <h1>Lorem ipsum dolar sit amet.</h1> 
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt lectus in sapien hendrerit viverra. Cras nunc nibh, congue at</p>
         </div>
 
     </div>

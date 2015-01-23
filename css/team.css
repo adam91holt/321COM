@@ -2,22 +2,93 @@
     height: 650px;
     width: 80%;
 }
-#teamLeft{
+#teamLeft {
     width: 33%;
     height: 100%;
     float: left;
 }
-#map img{
+#map img {
     height: 100%;
 }
 #teamRight {
     float: left;
     width: 1000px;
-    height: 500px; 
+    height: 500px;
     margin-left: 20px;
 }
-#rightLeft{
+#rightLeft {
     height: 100%;
     width:703px;
     float:left;
+}
+#teamContents {
+    height: auto;
+    padding: 20px 0 0 0;
+    width: 1000px;
+    background-color:rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: auto;
+    text-align: center;
+    overflow: hidden;
+}
+#logo {
+    width: 150px;
+    display: block;
+    margin: auto;
+}
+#teamName {
+    padding: 10px 0 15px 0;
+    font-size: 40px;
+    color: white;
+}
+.map {
+    padding: 5px 10px 5px 10px;
+    font-family:'Signika', sans-serif;
+    background: #34495e;
+    color: white;
+    text-decoration: none;
+    font-size: 12px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+.map:hover {
+    color: #bdc3c7;
+}
+#teamTable {
+    color: white;
+}
+.flat-table {
+    display: block;
+    font-family: sans-serif;
+    font-size: 13px;
+    overflow: auto;
+    width: auto;
+    margin: 20px 0 0 20px;
+    padding: 0 0 20px 0;
+}
+.flat-table th {
+    background-color: #34495e;
+    color: #ecf0f1;
+    font-weight: normal;
+    padding: 10px 10px;
+    text-align: center;
+}
+.flat-table td {
+    background-color: #ecf0f1;
+    color: #6f6f6f;
+    padding: 10px 10px;
+}
+.tweets {
+    width: 570px;
+    height: 200px;
+    overflow: scroll;
+    overflow-x: hidden;
+    margin: 20px 0 0 0;
+    padding: 0 0 0 0;
+}
+.time {
+    width: 90px;
 }
