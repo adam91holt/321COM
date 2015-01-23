@@ -43,7 +43,7 @@
     font-size: 40px;
     color: white;
 }
-.map {
+#map {
     padding: 5px 10px 5px 10px;
     font-family:'Signika', sans-serif;
     background: #34495e;
@@ -54,7 +54,7 @@
     -moz-border-radius: 5px;
     border-radius: 5px;
 }
-.map:hover {
+#map:hover {
     color: #bdc3c7;
 }
 #teamTable {
@@ -91,4 +91,33 @@
 }
 .time {
     width: 90px;
+}
+#screen {
+    background-color:rgba(0, 0, 0, 0.9);
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    display: none;
+}
+#mapCon {
+    height: 800px;
+    width: 600px;
+    background: #ecf0f1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -400px;
+    margin-left: -300px;
+    display: none;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+}
+#close {
+    height: 25px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }

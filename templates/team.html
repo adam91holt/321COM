@@ -12,6 +12,8 @@
 </head>
 
 <body>
+    <section id="screen" onclick="display()">
+    </section>
     <div id="header">
         <div class="leftFloat leftHead">
             <img class="leftFloat" src="imgs/flaming.svg" alt="">
@@ -29,7 +31,7 @@
             <section id="teamHeader">
                 <img id="logo" src="{{query[0].emblem}}">
                 <h1 id="teamName">{{query[0].teamName}}</h1>
-                <a class="map" href="">Show Stadium</a>
+                <a id="map" href="#" onclick="display()">Show Stadium</a>
             </section>
 
             <section class="leftFloat">
@@ -68,6 +70,9 @@
                 </table>
             </section>
         </section>
+        <section id="mapCon">
+            <img id="close" src="../imgs/close.png" alt="close" onclick="display()">
+        </section>
     </div>
     <div id="footer">
         <div id="footerCon">
@@ -76,6 +81,21 @@
         </div>
 
     </div>
+    <script>
+        var show = false;
+
+        function display() {
+            if(!show) {
+                document.getElementById('mapCon').style.display = 'block';
+                document.getElementById('screen').style.display = 'block';
+                show = true;
+            } else {
+                document.getElementById('mapCon').style.display = 'none';
+                document.getElementById('screen').style.display = 'none';
+                show = false;
+            };
+        };
+    </script>
     <script src="js/flip.js"></script>
 </body>
 
