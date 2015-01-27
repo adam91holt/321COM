@@ -4,8 +4,6 @@ import webapp2
 import jinja2
 import urllib
 import urllib2
-
-
 import json
 import os
 import unicodedata
@@ -14,7 +12,7 @@ from google.appengine.api import urlfetch
 import oauth2 as oauth
 import logging
 import twitterreq
-
+import youtubemodule
 
 
 
@@ -190,10 +188,33 @@ class TeamData(webapp2.RequestHandler):
         	self.response.write(template.render(template_values))
         else:
             self.redirect(users.create_login_url(self.request.uri))
+            
+
+API_KEY = "AIzaSyBZB23pzOwqTekDeTes4ZyLg4Pr2DGUp1U"
+
         
+# Youtube test module       
+class youtubetest(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+        response = youtubemodule.youtubereq("chelseafc")
+        content = json.loads(response.content.decode('utf8'))
+#      
+        if user:
+        	template = JINJA_ENVIRONMENT.get_template('youtube.html')
+        	template_values = {
+            'youtube': content["data"]["items"],
+        	}
+        	self.response.write(template.render(template_values))
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
+    
+    
+    
 
 app = webapp2.WSGIApplication([ 
 	('/', TeamList),
     ('/team',TeamData),
     ('/twittertest',MainHandler),
+    ('/youtube', youtubetest),
 	], debug=True)
