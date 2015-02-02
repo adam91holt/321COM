@@ -161,6 +161,7 @@ class TeamData(webapp2.RequestHandler):
                 #url for twittertest
                 #Put team name in URL below for the Twitter request. 
             #gotta take away the @ symbol
+        youtube = youtubemodule.youtubereq(query[0].youtube)
         minusfirst = query[0].twitter[1:]
         logging.info(minusfirst)
         twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + minusfirst +"&count=10"
@@ -184,6 +185,7 @@ class TeamData(webapp2.RequestHandler):
             'url_logout_text': 'Log out',
             'players': teamPlayers,
             'tweets': tweets,
+            'youtube': youtube,
         	}
         	self.response.write(template.render(template_values))
         else:
@@ -197,6 +199,7 @@ API_KEY = "AIzaSyBZB23pzOwqTekDeTes4ZyLg4Pr2DGUp1U"
 class youtubetest(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
+#         The response holds the data collected from the api
         response = youtubemodule.youtubereq("chelseafc")
 #      
         if user:
