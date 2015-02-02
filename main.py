@@ -198,12 +198,11 @@ class youtubetest(webapp2.RequestHandler):
     def get(self):
         user = users.get_current_user()
         response = youtubemodule.youtubereq("chelseafc")
-        content = json.loads(response.content.decode('utf8'))
 #      
         if user:
         	template = JINJA_ENVIRONMENT.get_template('youtube.html')
         	template_values = {
-            'youtube': content["data"]["items"],
+            'youtube': response["data"]["items"],
         	}
         	self.response.write(template.render(template_values))
         else:
