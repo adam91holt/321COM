@@ -52,7 +52,10 @@ def teamList(arg):
             players = json.loads(openplayers.decode('utf8'))
             #Variable for all the players
             player = players['players']
+            #For loop to put in every team player
             for p in player:
-                person = (p['jerseryNumber'], p['name'], p['position'])
+                person = (p['jerseyNumber'], p['name'], p['position'])
                 teamPlayers.append(person)
+                print person
     return teamPlayers
+
