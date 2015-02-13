@@ -11,14 +11,9 @@ import operator
 from google.appengine.api import urlfetch
 import oauth2 as oauth
 import logging
-<<<<<<< HEAD
-import twitterreq
-import youtubemodule
-=======
->>>>>>> 609784f0760cc9acec7ac841b61e68ea2264f883
 
 #Modles we have made
-import twitterreq, teams, teamsForDatastore 
+import twitterreq, teams, teamsForDatastore, youtubemodule 
 
 
 
@@ -94,48 +89,13 @@ class TeamData(webapp2.RequestHandler):
         
         #Get the team from datastore where the team name is = the team that was passed through url
         query = db.GqlQuery("SELECT * FROM Team WHERE teamName IN ('" + arg + "')")
-<<<<<<< HEAD
-        # these work just like console logging in javascript enjoy! they will appear in the terminal 
-        logging.info(query[0].twitter)
-        #Array to store all players in... will be store in tuples
-        teamPlayers = []
 
-        #For loops to search all teams with arguement and then get players into the teamPlayers array
-        for t in teamlist:
-            #Get each club name
-            club = t['teamName']
-
-            #Finds the team from the one that was passed throuh
-            if arg in club:
-                #Get the url for the club
-                cluburl = t['_links']['team']['href']
-                #Open up the url
-                openclub = urllib2.urlopen(cluburl).read()
-                #Convert JSON
-                clubJSON = json.loads(openclub.decode('utf8')) 
-                #Players URL
-                playersurl = clubJSON['_links']['players']['href']
-                #Get all players
-                openplayers = urllib2.urlopen(playersurl).read()
-                #Convert JSON
-                players = json.loads(openplayers.decode('utf8'))
-                #Variable for all the players
-                player = players['players']
-                for p in player:
-                    person = (p['jerseryNumber'], p['name'], p['position'])
-                    teamPlayers.append(person)
-                #url for twittertest
-                #Put team name in URL below for the Twitter request. 
-            #gotta take away the @ symbol
-        youtube = youtubemodule.youtubereq(query[0].youtube)
-=======
         
         #REISS' BIT
         
         #url for twittertest
         #Put team name in URL below for the Twitter request. 
         #gotta take away the @ symbol
->>>>>>> 609784f0760cc9acec7ac841b61e68ea2264f883
         minusfirst = query[0].twitter[1:]
         #twitter url, change the count to get more results
         twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + minusfirst +"&count=10"
@@ -156,21 +116,14 @@ class TeamData(webapp2.RequestHandler):
         if user:
         	template = JINJA_ENVIRONMENT.get_template('team.html')
         	template_values = {
-<<<<<<< HEAD
-            'user': user.nickname(),
-            'url_logout': logout_url,
-            'url_logout_text': 'Log out',
-            'players': teamPlayers,
-            'tweets': tweets,
-            'youtube': youtube,
-=======
                 'user': user.nickname(),
                 'url_logout': logout_url,
                 'url_logout_text': 'Log out',
                 'players': teamPlayers,
                 'tweets': tweets,
                 'query': query,
->>>>>>> 609784f0760cc9acec7ac841b61e68ea2264f883
+                'youtube': youtube,
+
         	}
         	self.response.write(template.render(template_values))
         else:
@@ -201,12 +154,7 @@ class youtubetest(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([ 
 	('/', TeamList),
-<<<<<<< HEAD
-    ('/team',TeamData),
-    ('/twittertest',MainHandler),
-    ('/youtube', youtubetest),
-=======
     ('/team', TeamData),
     ('/twittertest', twittertest),
->>>>>>> 609784f0760cc9acec7ac841b61e68ea2264f883
+    ('/youtube', youtubetest),
 	], debug=True)
