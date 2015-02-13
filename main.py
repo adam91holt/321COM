@@ -89,6 +89,11 @@ class TeamData(webapp2.RequestHandler):
         
         #Get the team from datastore where the team name is = the team that was passed through url
         query = db.GqlQuery("SELECT * FROM Team WHERE teamName IN ('" + arg + "')")
+        
+        #Abbas's Bit
+        
+        #Pass through the team name to the youtube module
+        youtube = youtubemodule.youtubereq(arg)
 
         
         #REISS' BIT
@@ -122,8 +127,7 @@ class TeamData(webapp2.RequestHandler):
                 'players': teamPlayers,
                 'tweets': tweets,
                 'query': query,
-                'youtube': youtube,
-
+                'youtube': youtube["data"]["items"],
         	}
         	self.response.write(template.render(template_values))
         else:
