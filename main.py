@@ -13,7 +13,7 @@ import oauth2 as oauth
 import logging
 
 #Modles we have made
-import twitterreq, teams, teamsForDatastore 
+import twitterreq, teams, teamsForDatastore, youtubemodule 
 
 
 
@@ -89,6 +89,7 @@ class TeamData(webapp2.RequestHandler):
         
         #Get the team from datastore where the team name is = the team that was passed through url
         query = db.GqlQuery("SELECT * FROM Team WHERE teamName IN ('" + arg + "')")
+
         
         #REISS' BIT
         
@@ -121,14 +122,39 @@ class TeamData(webapp2.RequestHandler):
                 'players': teamPlayers,
                 'tweets': tweets,
                 'query': query,
+                'youtube': youtube,
+
         	}
         	self.response.write(template.render(template_values))
         else:
             self.redirect(users.create_login_url(self.request.uri))
+            
+
+API_KEY = "AIzaSyBZB23pzOwqTekDeTes4ZyLg4Pr2DGUp1U"
+
         
+# Youtube test module       
+class youtubetest(webapp2.RequestHandler):
+    def get(self):
+        user = users.get_current_user()
+#         The response holds the data collected from the api
+        response = youtubemodule.youtubereq("chelseafc")
+#      
+        if user:
+        	template = JINJA_ENVIRONMENT.get_template('youtube.html')
+        	template_values = {
+            'youtube': response["data"]["items"],
+        	}
+        	self.response.write(template.render(template_values))
+        else:
+            self.redirect(users.create_login_url(self.request.uri))
+    
+    
+    
 
 app = webapp2.WSGIApplication([ 
 	('/', TeamList),
     ('/team', TeamData),
     ('/twittertest', twittertest),
+    ('/youtube', youtubetest),
 	], debug=True)
