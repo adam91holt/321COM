@@ -2,7 +2,7 @@ var Browser = require("zombie");
 var url = "http://work.krasimirtsonev.com/git/blog-posts/TestingWithZombieJS/site/";
 var browser = new Browser();
 
-describe("testing with zombie", function() {
+describe("Testing the Team Page", function() {
 
     it("should have defined headless browser", function(next){
         expect(typeof browser != "undefined").toBe(true);
