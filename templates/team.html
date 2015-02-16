@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="css/team.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/jquery.flip.js"></script>
+    <script src="http://jwpsrv.com/library/Y90shvxsEeKNihIxOUCPzg.js"></script>
 </head>
 
 <body>
@@ -34,6 +35,29 @@
                 <a id="map" href="#" onclick="display()">Show Stadium</a>
             </section>
 
+            
+            <div id='container'></div>
+            <script type="text/javascript">
+              jwplayer("container").setup({
+                playlist: [
+                    {% for y in youtube %}
+                    {
+                  image: "{{y.thumbnail.hqDefault}}", file: "{{y.player.default}}", title: "{{y.title}}"
+                },
+                {% endfor %}
+                ],
+
+                height: 300,
+                width: 800,
+                listbar: {
+                  position: 'right',
+                  size: 260
+                },
+              });
+            </script>
+
+
+            
             <section class="leftFloat">
                 <table id="teamTable" class="flat-table">
                     <tr>

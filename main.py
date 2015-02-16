@@ -93,7 +93,7 @@ class TeamData(webapp2.RequestHandler):
         #Abbas's Bit
         
         #Pass through the team name to the youtube module
-        youtube = youtubemodule.youtubereq(arg)
+        youtube = youtubemodule.youtubereq(query[0].youtube)
 
         
         #REISS' BIT
