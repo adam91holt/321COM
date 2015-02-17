@@ -4,7 +4,7 @@
   "description": "321COM MashUp",
   "main": "server.js",
   "scripts": {
-    "test": "jasmine-node --noStack team.spec.js",
+    "test": "jasmine-node spec/team.spec.js",
     "start": "node server.js"
   },
   "repository": {

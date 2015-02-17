@@ -26,9 +26,10 @@
     <div id="mid">
         <ul id="teamCon">
             {% for team in allteams %}
-            <li class="gridItem card">
+             {% for q in query %} {% if q.teamName in team[0] %}
+            <li id="{{q.teamName}}"class="gridItem card">
                 <div class="front">
-                    {% for q in query %} {% if q.teamName in team[0] %}
+                   
                     <img src="{{q.emblem}}" class="emblem">
                     <p class="team">{{q.teamName}}</p>
                     {% endif%} {% endfor %}
@@ -39,7 +40,7 @@
                     <p class="pos">
                         {{team[1]}}
                     </p>
-                    <a class="more" href="/team?team={{q.teamName}}">TEAM DETAILS</a>
+                    <a class="more" id="details_{{q.teamName}}" href="/team?team={{q.teamName}}">TEAM DETAILS</a>
                     {% endif%} {% endfor %}
                 </div>
             </li>
