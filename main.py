@@ -15,8 +15,6 @@ import logging
 #Modles we have made
 import twitterreq, teams, teamsForDatastore, youtubemodule 
 
-
-
 #Adds all teams to datastore from teamsForDatstore module
 teamsForDatastore.dataStoreTeams()
 
@@ -26,24 +24,10 @@ JINJA_ENVIRONMENT = jinja2.Environment(
     loader=jinja2.FileSystemLoader(os.path.join(os.path.dirname(__file__),'templates')),
     extensions=['jinja2.ext.autoescape'])
 	
-#For twitter api testing testing purposes
-class twittertest(webapp2.RequestHandler):
-    def get(self):
-        #url for twittertest
-        twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=avfcofficial&count=1"
-        parameters = []
-        tweets = []
-        response = twitterreq.twitterreq(twitterurl, "GET", parameters)
-        content = json.loads(response.content.decode('utf8'))
-        for item in content:
-            self.response.write(response.content)
-        
-
+    
 #Will be used as the main part of the app
 class TeamList(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        logout_url = users.create_logout_url(self.request.path)
         
         #Gets all teams from datastore
         query = db.GqlQuery("SELECT * FROM Team")
@@ -51,34 +35,17 @@ class TeamList(webapp2.RequestHandler):
         #Matches teams to datastore and puts them in position
         allteams = teams.tableStandings()
         
-        #Pass in all templated if user is logged in
-        if user:
-        	template = JINJA_ENVIRONMENT.get_template('index.html')
-        	template_values = {
-            'user': user.nickname(),
-            'url_logout': logout_url,
-            'url_logout_text': 'Log out',
+        #Pass all values and create the template
+        template = JINJA_ENVIRONMENT.get_template('index.html')
+        template_values = {
             'query': query,
             'allteams': allteams,
-        	}
-        	self.response.write(template.render(template_values))
-        else:
-            self.redirect(users.create_login_url(self.request.uri))
-            
-    def post(self):
-        #Not being used at the moment!!!!!
-        self.redirect('/' + urllib.urlencode(query_params))
+        }
+        self.response.write(template.render(template_values))
+
         
 class TeamData(webapp2.RequestHandler):
     def get(self):
-        user = users.get_current_user()
-        logout_url = users.create_logout_url(self.request.path)
-
-
-        # these work just like console logging in javascript enjoy! they will appear in the terminal
-        # logging.info(whatever variable/string) 
-        # query[0] will be the single team for each page so you can choose its attributes from that
-        # _____________________________________________________________
         
         #ADAMS BIT
         
@@ -106,10 +73,10 @@ class TeamData(webapp2.RequestHandler):
         twitterurl = "https://api.twitter.com/1.1/statuses/user_timeline.json?screen_name=" + minusfirst +"&count=10"
         #not really neded parameters mostly for put operations will take this out when cleaning up
         parameters = []
-#       will store the formated tweets, again this can be seriously cleaned up
+        #will store the formated tweets, again this can be seriously cleaned up
         tweets = []
         response = twitterreq.twitterreq(twitterurl, "GET", parameters)
-#         stops all the tweets coming out in complete unreadable jargon
+        #stops all the tweets coming out in complete unreadable jargon
         content = json.loads(response.content.decode('utf8'))
         for item in content:
         #just a test format, this can change
@@ -117,41 +84,15 @@ class TeamData(webapp2.RequestHandler):
             tweets.append(item)
             
             
-        #Pass in all templated if user is logged in
-        if user:
-        	template = JINJA_ENVIRONMENT.get_template('team.html')
-        	template_values = {
-                'user': user.nickname(),
-                'url_logout': logout_url,
-                'url_logout_text': 'Log out',
-                'players': teamPlayers,
-                'tweets': tweets,
-                'query': query,
-                'youtube': youtube["data"]["items"],
-        	}
-        	self.response.write(template.render(template_values))
-        else:
-            self.redirect(users.create_login_url(self.request.uri))
-            
-
-API_KEY = "AIzaSyBZB23pzOwqTekDeTes4ZyLg4Pr2DGUp1U"
-
-        
-# Youtube test module       
-class youtubetest(webapp2.RequestHandler):
-    def get(self):
-        user = users.get_current_user()
-#         The response holds the data collected from the api
-        response = youtubemodule.youtubereq("chelseafc")
-#      
-        if user:
-        	template = JINJA_ENVIRONMENT.get_template('youtube.html')
-        	template_values = {
-            'youtube': response["data"]["items"],
-        	}
-        	self.response.write(template.render(template_values))
-        else:
-            self.redirect(users.create_login_url(self.request.uri))
+        #Create template for the page with the values
+        template = JINJA_ENVIRONMENT.get_template('team.html')
+        template_values = {
+            'players': teamPlayers,
+            'tweets': tweets,
+            'query': query,
+            'youtube': youtube["data"]["items"],
+        }
+        self.response.write(template.render(template_values))
     
     
     
@@ -159,6 +100,4 @@ class youtubetest(webapp2.RequestHandler):
 app = webapp2.WSGIApplication([ 
 	('/', TeamList),
     ('/team', TeamData),
-    ('/twittertest', twittertest),
-    ('/youtube', youtubetest),
 	], debug=True)
