@@ -8,6 +8,9 @@ def allTeams():
     #Store all teams
     teams = dataDecode['standing']
     return teams
+    print teams
+
+
 
 def tableStandings():
     #URL for getting all teams     
@@ -58,4 +61,3 @@ def teamList(arg):
                 teamPlayers.append(person)
                 print person
     return teamPlayers
-
