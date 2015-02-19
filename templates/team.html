@@ -10,7 +10,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="js/jquery.flip.js"></script>
     <script src="http://jwpsrv.com/library/Y90shvxsEeKNihIxOUCPzg.js"></script>
+    <script src="js/wikipedia.js"></script>
     <title>{{query[0].teamName}}</title>
+    
 </head>
 
 <body>
@@ -100,7 +102,10 @@
             <img id="close" src="../imgs/close.png" alt="close" onclick="display()">
             <iframe id="googleMaps" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCZ7qzK8IoZFAs4b4mWxvIywq07tGxUGY8&center={{query[0].lat}},{{query[0].lon}}&zoom=18&maptype=satellite">
             </iframe>
-            <section id="wikiHold">
+            <section id="wikiHold" onclick='getwiki("7473")'>
+                <button id='getteam'>
+                    get team wiki
+                </button>
                 <h1>This could hold wiki info...</h1>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt lectus in sapien hendrerit viverra. Cras nunc nibh, congue at Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt lectus in sapien hendrerit viverra. Cras nunc nibh, congue at Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt lectus in sapien hendrerit viverra. Cras nunc nibh, congue at</p>
             </section>
@@ -109,6 +114,7 @@
     <div id="footer">
         <div id="footerCon">
             <h1>Lorem ipsum dolar sit amet.</h1> 
+
             <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin tincidunt lectus in sapien hendrerit viverra. Cras nunc nibh, congue at</p>
         </div>
 
