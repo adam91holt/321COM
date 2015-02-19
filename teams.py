@@ -53,6 +53,6 @@ def teamList(arg):
             #Variable for all the players
             player = players['players']
             for p in player:
-                person = (p['jerseryNumber'], p['name'], p['position'])
+                person = (p['jerseyNumber'], p['name'], p['position'])
                 teamPlayers.append(person)
     return teamPlayers
