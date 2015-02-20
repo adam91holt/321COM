@@ -102,7 +102,7 @@
             <img id="close" src="../imgs/close.png" alt="close" onclick="display()">
             <iframe id="googleMaps" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCZ7qzK8IoZFAs4b4mWxvIywq07tGxUGY8&center={{query[0].lat}},{{query[0].lon}}&zoom=18&maptype=satellite">
             </iframe>
-            <section id="wikiHold" onclick='getwiki("7473")'>
+            <section id="wikiHold" onclick='getwiki({{query[0].wikipedia}})'>
                 <button id='getteam'>
                     get team wiki
                 </button>

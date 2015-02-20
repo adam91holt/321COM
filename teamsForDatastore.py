@@ -9,6 +9,7 @@ class Team(db.Model):
     lat = db.FloatProperty()
     stadium = db.StringProperty()
     emblem = db.StringProperty()
+    wikipedia = db.StringProperty()
 
 def dataStoreTeams():
     #Add all 20 teams but not wolverhampton like reiss did
