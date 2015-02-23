@@ -17,12 +17,13 @@ describe("Homepage : ", function() {
                 browser.assert.text('title', 'Football Mashup', 'wrong page title');
             }).then(function(done) {
                 return browser.clickLink('#details_Chelsea')
-            }).then(function(done) {
-                browser.wait;
-                browser.wait(pageLoaded, function() {
-                    console.log(browser.html());
-                });
-                //browser.assert.success()
+            }).then(
+        null,
+        function(e) {
+            console.log("An error occurred deep within func", e, "continuing");
+        }
+    ).then(function(done) {
+                browser.assert.success()
                 browser.assert.text('title', 'Chelsea', 'wrong page title');
             }).then(done, done)
         });
