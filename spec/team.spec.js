@@ -25,7 +25,20 @@ describe("Homepage : ", function() {
     ).then(function(done) {
                 browser.assert.success()
                 browser.assert.text('title', 'Chelsea', 'wrong page title');
+
+            }).then(function(done) {
+                //testing each element is on the page including the correct amount of elements
+                browser.assert.element('#container');
+                browser.assert.elements('.Tweet', 10);
+                browser.assert.elements('.player', 28);
+                browser.assert.element('#wikiHold');
+
             }).then(done, done)
         });
     })
 });
+
+
+
+
+

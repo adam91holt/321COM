@@ -70,7 +70,7 @@
                         <th>Position</th>
                     </tr>
                     {% for p in players %}
-                    <tr>
+                    <tr class = "player">
                         <td><b>{{p[0]}}</b>
                         </td>
                         <td>{{p[1]}}</td>
@@ -86,7 +86,7 @@
                         <th>Tweet</th>
                     </tr>
                     {% for t in tweets %}
-                    <tr>
+                    <tr class="Tweet">
                         <td>
                             <b>{{t.created_at[0:19]}}</b>
                         </td>
