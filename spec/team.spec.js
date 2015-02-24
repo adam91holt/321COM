@@ -28,10 +28,10 @@ describe("Homepage : ", function() {
 
             }).then(function(done) {
                 //testing each element is on the page including the correct amount of elements
-                browser.assert.element('#container');
-                browser.assert.elements('.Tweet', 10);
-                browser.assert.elements('.player', 28);
-                browser.assert.element('#wikiHold');
+                browser.assert.element('#container',"container not found");
+                browser.assert.elements('.Tweet', 10, "tweets not found");
+                browser.assert.elements('.player', 28,"players not found");
+                browser.assert.element('#wikiHold', "wikipedia not found");
 
             }).then(done, done)
         });
