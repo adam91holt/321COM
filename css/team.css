@@ -86,8 +86,9 @@
     height: 200px;
     overflow: scroll;
     overflow-x: hidden;
-    margin: 20px 0 0 0;
+    margin: 5px 0 0 0;
     padding: 0 0 0 0;
+    margin-bottom: 20px;
 }
 .time {
     width: 90px;
@@ -102,7 +103,7 @@
     display: none;
 }
 #mapCon {
-    height: 800px;
+    height: 450px;
     width: 600px;
     background: #ecf0f1;
     position: absolute;
@@ -126,8 +127,24 @@
 #googleMaps {
     margin: 45px 0 0 0;
 }
-#wikiHold{
-    width: 500px;
+#wikiInfo{
+    width: 570px;
+    overflow: scroll;
+    height: 636px;
+    margin-top: 20px;
+    background: #f6f6f6;
+    color: #666;
+}
+#wikiInfo p{
+    padding: 0 10px 0 10px;
+    margin-top: 10px;
+    font-family:Arial, Helvetica, sans-serif;
+    font-size: 14px;
+}
+#wikiInfo h2{
+    color: black;
+}
+#youtubePlayer{
     margin: auto;
     margin-top: 20px;
 }

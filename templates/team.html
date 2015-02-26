@@ -39,29 +39,7 @@
             </section>
 
             
-            <div id='container'></div>
-            
-            <script type="text/javascript">
-              jwplayer("container").setup({
-                playlist: [
-                    {% for y in youtube %}
-                    {
-                  image: "{{y.thumbnail.hqDefault}}", file: "{{y.player.default}}", title: "{{y.title}}"
-                },
-                {% endfor %}
-                ],
-
-                height: 300,
-                width: 800,
-                listbar: {
-                  position: 'right',
-                  size: 260
-                },
-              });
-            </script>
-
-
-            
+            <section id='youtubePlayer'></section>           
             <section class="leftFloat">
                 <table id="teamTable" class="flat-table">
                     <tr>
@@ -78,6 +56,10 @@
                     </tr>
                     {% endfor %}
                 </table>
+            </section>
+            <section class="leftFloat">
+                <div id='wikiInfo'>
+                </div>   
             </section>
             <section class="leftFloat">
                 <table class="flat-table tweets">
@@ -102,14 +84,6 @@
             <img id="close" src="../imgs/close.png" alt="close" onclick="display()">
             <iframe id="googleMaps" width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/view?key=AIzaSyCZ7qzK8IoZFAs4b4mWxvIywq07tGxUGY8&center={{query[0].lat}},{{query[0].lon}}&zoom=18&maptype=satellite">
             </iframe>
-            <section id="wikiHold" onclick='getwiki({{query[0].wikipedia}})'>
-                <button id='getteam'>
-                    get team wiki
-                </button>
-                 <div id='wikiInfo'>
-                     
-                </div>   
-            </section>
         </section>
     </div>
     <div id="footer">
@@ -134,6 +108,23 @@
                 show = false;
             };
         };
+              jwplayer("youtubePlayer").setup({
+                playlist: [
+                    {% for y in youtube %}
+                    {
+                  image: "{{y.thumbnail.hqDefault}}", file: "{{y.player.default}}", title: "{{y.title}}"
+                },
+                {% endfor %}
+                ],
+
+                height: 300,
+                width: 900,
+                listbar: {
+                  position: 'right',
+                  size: 260
+                },
+              });
+        getwiki({{query[0].wikipedia}})
     </script>
     <script src="js/flip.js"></script>
 </body>
