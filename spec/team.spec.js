@@ -1,7 +1,7 @@
 var Browser = require("zombie");
 var url = "http://mashup321com.appspot.com/";
 var browser = new Browser();
-jasmine.getEnv().defaultTimeoutInterval = 999999
+jasmine.getEnv().defaultTimeoutInterval = 99999
 describe("Homepage : ", function() {
     describe('browser : ', function() {
         it("should have defined headless browser", function(next) {
@@ -20,7 +20,9 @@ describe("Homepage : ", function() {
             }).then(
         null,
         function(e) {
+            // ignore the false positive that google maps produces
             console.log("An error occurred deep within func", e, "continuing");
+            
         }
     ).then(function(done) {
                 browser.assert.success()
@@ -30,7 +32,7 @@ describe("Homepage : ", function() {
                 //testing each element is on the page including the correct amount of elements
                 browser.assert.element('#container',"container not found");
                 browser.assert.elements('.Tweet', 10, "tweets not found");
-                browser.assert.elements('.player', 28,"players not found");
+                browser.assert.elements('.player', 25, "players not found");
                 browser.assert.element('#wikiHold', "wikipedia not found");
 
             }).then(done, done)
