@@ -112,7 +112,7 @@
                 playlist: [
                     {% for y in youtube %}
                     {
-                  image: "{{y.thumbnail.hqDefault}}", file: "{{y.player.default}}", title: '{{y.title}}'
+                  image: "{{y.thumbnail.hqDefault}}", file: "{{y.player.default}}", title: {{y.title}}
                 },
                 {% endfor %}
                 ],
